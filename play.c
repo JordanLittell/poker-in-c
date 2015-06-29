@@ -91,9 +91,21 @@ int process_input(Game *g) {
     return 0;
 }
 
+void evaluate_hands(Game *g) {
+    //first evaluate hand of player
+    int match_count;
+    for(int i= 0; i < 7; i++) {
+        //count matches, put all matches into array
+    }   
+    //evaluate hand of computer 
+    //repeat proccess for human 
+    //juxtapose the matches and find winner based on standard poker rules 
+}
+
 int main (int argc, char *argv[])
 {
     Game *game = Game_init();
     while(process_input(game));
+    evaluate_hands(game);
     return 0;
 }
