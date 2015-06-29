@@ -2,7 +2,7 @@ CFLAGS=-Wall -g
 
 all: play 
 
-play: card.o
-
 clean: 
 	rm -f play
+	rm -f card
+	rm -f -r play.dSYM
