@@ -23,6 +23,7 @@ typedef struct {
     Deck deck; 
     Player human; 
     Player computer;
+    Card (*pick_random)(void *self);
     int (*create_player)(void *self); 
     int (*prompt_player)(void *self);
     int (*init_deck)();

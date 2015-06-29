@@ -48,6 +48,11 @@ Player *Player_init (Game *g) {
     return p;
 }
 
+Card *PickRandom(Game *g) {
+    int index = rand()%52; 
+    return g->deck.cards[index];
+}
+
 Game *Game_init () {
     Game *game = malloc(sizeof(Game)); 
     printf("initializing deck\n");
@@ -59,8 +64,36 @@ Game *Game_init () {
     return game;
 }
 
+
+
+int process_input(Game *g) {
+    printf("your hand:\n");
+    char buffer[100];
+    int discard;
+    for(int i = 0; i < 7; i++) {
+        printf("card %i: %i of %s\n", i, g->human.hand[i]->value, g->human.hand[i]->suit);
+    }
+    printf("please choose number of cards to discard..."); 
+    scanf("%i", &discard); 
+    for(int j = 0; j < discard; j++) {
+        int to_discard; 
+        printf("please choose index of %i card you would like to discard\n", j); 
+        scanf("%i", &to_discard);
+        int random = rand()%56;
+        g->human.hand[to_discard] = g->deck.cards[random];
+    }
+
+    printf("your hand is now:\n");
+    for(int i = 0; i < 7; i++) {
+        printf("card %i: %i of %s\n", i, g->human.hand[i]->value, g->human.hand[i]->suit);
+    }
+
+    return 0;
+}
+
 int main (int argc, char *argv[])
 {
     Game *game = Game_init();
+    while(process_input(game));
     return 0;
 }
